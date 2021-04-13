@@ -1,3 +1,4 @@
 {
-  "extends": "@cookiex"
+  "extends": "@cookiex",
+  "ignorePatterns": "/dist"
 }

@@ -8,7 +8,10 @@
   "scripts": {
     "cmd": "yarn ts ./src/bin/index.ts",
     "start": "yarn cmd start",
-    "ts": "ts-node-dev -r dotenv/config"
+    "ts": "ts-node-dev -r dotenv/config",
+    "build": "tsc",
+    "cmd-prod": "node ./dist/bin/index.js",
+    "start-prod": "yarn cmd-prod start"
   },
   "devDependencies": {
     "@cookiex/eslint-config": "^0.4.2",
