@@ -11,33 +11,20 @@ character.get( '/character', async ( req, res, next ) => {
   const size = req.query.pageSize ? Number( req.query.pageSize ) : 5
   const page = req.query.page ? Math.max( Number( req.query.page ), 1 ) : 1
   const search = req.query.q || req.query.search ? String( req.query.q || req.query.search ) : null
+
   if ( size > 20 ) return next( new BadRequest( 'max page size is 20' ) )
-  try {
-    const response = await rickandmortyapi.get<List<Character>>( '/character' )
-    
-    if ( search ) {
-      const resultsFiltreds = response.data.results.filter( result => result.name.includes( search ) )
-        .slice( ( page - 1 ) * size, page * size )
 
-      if ( !resultsFiltreds.length ) return next( new NotFound( 'end of list' ) )
-      res.json( resultsFiltreds )
+  rickandmortyapi.get<List<Character>>( '/character' )
+    .then( ( { data: { results } } ) => {
+      if ( search ) results = results.filter( result => result.name.includes( search ) )
 
-    } else {
-      const results = response.data.results.slice( ( page - 1 ) * size, page * size )
+      results = results.slice( ( page - 1 ) * size, page * size )
 
-      if ( !results.length ) {
+      if ( !results.length ) next( new NotFound( 'end of list' ) )
 
-        next( new NotFound( 'end of list' ) )
-  
-      } else {
-
-        res.json( results )
-
-      }
-    }
-  } catch ( e ) {
-    createAxiosNextError( e, next )
-  }
+      else res.json( results )
+    } )
+    .catch( e => createAxiosNextError( e, next ) )
 } )
 
 export { character }
