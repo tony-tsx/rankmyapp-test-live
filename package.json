@@ -1,0 +1,35 @@
+{
+  "name": "rankmyapp-test-live",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tony-tsx/rankmyapp-test-live.git",
+  "author": "Tony <tony.js@zoho.eu>",
+  "license": "MIT",
+  "scripts": {
+    "cmd": "yarn ts ./src/bin/index.ts",
+    "start": "yarn cmd start",
+    "ts": "ts-node-dev -r dotenv/config"
+  },
+  "devDependencies": {
+    "@cookiex/eslint-config": "^0.4.2",
+    "@types/express": "^4.17.11",
+    "@types/http-errors": "^1.8.0",
+    "@types/jest": "^26.0.22",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.24.0",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "axios": "^0.21.1",
+    "commander": "^7.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "husky": "^6.0.0"
+  }
+}
